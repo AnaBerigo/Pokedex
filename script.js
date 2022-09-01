@@ -6,6 +6,10 @@ const form = document.querySelector(".form");
 const input = document.querySelector(".input-search");
 const prev = document.querySelector(".btn-prev");
 const next = document.querySelector(".btn-next");
+const checkbox = document.querySelector(".switch");
+var checkboxUm = document.querySelector("#meu-checkbox");
+var checkboxDois = document.querySelector("#meu-checkbox-dois");
+
 // const abbrPokemonName = document.querySelector(".abbr-pokemon-name");
 const abbrPokemonName = document.createElement("abbr");
 const PokemonData = document.querySelector(".pokemon-data");
@@ -84,5 +88,14 @@ next.addEventListener("click", () => {
   renderPokemon(searchPokemon);
   //   }
 });
-
+if (checkboxUm.checked == true) {
+  console.log("checked1");
+} else {
+  console.log("não checked1");
+}
+if (checkboxDois.checked) {
+  console.log("checked2");
+} else {
+  console.log("não checked2");
+}
 renderPokemon(searchPokemon);

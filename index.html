@@ -7,9 +7,20 @@
     <link rel="stylesheet" href="style.css"/>
     <link rel="icon" href="favicons/favicon-16x16.png"/>
     <script defer src="script.js"></script>
+    <script src="https://kit.fontawesome.com/c001f66863.js" crossorigin="anonymous"></script>
     <title>Pokédex</title>
 </head>
 <body>
+    <header>
+        <img src="images/cards_icon.png" class="cards_icon"/>
+        <img src="images/pokedex_icon.png" class="pokedex_icon"/>
+        <label class="switch">
+            <input class="checkbox" type="checkbox">
+            <span class="slider round"></span>
+        </label>
+        <input type="checkbox" id="meu-checkbox" checked="checked"> Este está marcado
+<input type="checkbox" id="meu-checkbox-dois"> Este não
+    </header>
     <main>
         <img src="#" class="pokemon-image" alt="Pokemon" onerror="this.style.display = 'none'" onload='this.style.display = "block"'/>
         <img src="images/ImageNotFound.png" class="image-not-found" style="display: none;"/>
