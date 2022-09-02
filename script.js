@@ -96,6 +96,72 @@ next.addEventListener("click", () => {
   //   }
 });
 
+const cores = (type) => {
+  let gridColor = [];
+  for (let i = 0; i < type.length; i++) {
+    switch (type[i]) {
+      case "normal":
+        gridColor.push("#A8A87C");
+        break;
+      case "fighting":
+        gridColor.push("#C81D3A");
+        break;
+      case "flying":
+        gridColor.push("#AC91EC");
+        break;
+      case "poison":
+        gridColor.push("#A7409D");
+        break;
+      case "ground":
+        gridColor.push("#E3C071");
+        break;
+      case "rock":
+        gridColor.push("#BAA045");
+        break;
+      case "bug":
+        gridColor.push("#A6B83A");
+        break;
+      case "ghost":
+        gridColor.push("#735995");
+        break;
+      case "steel":
+        gridColor.push("#B9B8CF");
+        break;
+      case "fire":
+        gridColor.push("#F87F3D");
+        break;
+      case "water":
+        gridColor.push("#6691EC");
+        break;
+      case "grass":
+        gridColor.push("#6AC85C");
+        break;
+      case "electric":
+        gridColor.push("#FBD04A");
+        break;
+      case "psychic":
+        gridColor.push("#FF5788");
+        break;
+      case "ice":
+        gridColor.push("#90D8D8");
+        break;
+      case "dragon":
+        gridColor.push("#773BF2");
+        break;
+      case "dark":
+        gridColor.push("#72584A");
+        break;
+      case "fairy":
+        gridColor.push("#F599AC");
+        break;
+      default:
+        gridColor.push("rgba(255, 255, 255, 0.8)");
+        break;
+    }
+  }
+  return gridColor;
+};
+
 const viewCards = async () => {
   let cardP = document.querySelector(".grid-container");
   let cardPI = document.querySelector(".dots");
@@ -108,13 +174,25 @@ const viewCards = async () => {
   }
   let a = "";
   if (data) {
-    for (let index = 1; index < data.count; index++) {
+    for (let index = 1; index < 891; index++) {
       const data1 = await fetchPokemon(index);
       if (data1) {
+        const type = data1.types.map((t) => {
+          return t.type.name;
+        });
+        let cor = cores(type);
+
         a =
           a +
-          `<div class="grid-item">
-           <img src="${data1["sprites"]["versions"]["generation-v"]["black-white"]["front_default"]}" class="pokemon-imageCard" alt="Pokemon"/>
+          `<div class="grid-item" style="background: linear-gradient(to bottom, ${
+            cor[0]
+          }, ${cor.length === 2 ? cor[1] : "#fff"});">
+           <img src="${
+             data1["sprites"]["versions"]["generation-v"]["black-white"][
+               "front_default"
+             ]
+           }" class="pokemon-imageCard" alt="Pokemon"/><br/>
+           <p>${type}</p>
          </div>`;
       }
     }
