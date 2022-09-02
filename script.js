@@ -6,15 +6,22 @@ const form = document.querySelector(".form");
 const input = document.querySelector(".input-search");
 const prev = document.querySelector(".btn-prev");
 const next = document.querySelector(".btn-next");
-const checkbox = document.querySelector(".checkbox");
+const checkbox = document.getElementById("checkbox");
 const cards = document.querySelector(".layout-cards");
 const pokedex = document.querySelector(".layout-pokedex");
+
+const pokemonImageCard = document.querySelector(".pokemon-imageCard");
 
 // const abbrPokemonName = document.querySelector(".abbr-pokemon-name");
 const abbrPokemonName = document.createElement("abbr");
 const PokemonData = document.querySelector(".pokemon-data");
 
 let searchPokemon = 1;
+
+checkbox.addEventListener("change", function () {
+  pokedex.classList.toggle("hide");
+  cards.classList.toggle("hide");
+});
 
 const fetchPokemon = async (pokemon) => {
   const APIResponse = await fetch(
@@ -89,15 +96,32 @@ next.addEventListener("click", () => {
   //   }
 });
 
-function trocaLayout() {
-  if (checkbox.checked === true) {
-    cards.style.display = "block";
-    pokedex.style.display = "none";
-  } else {
-    pokedex.style.display = "block";
-    cards.style.display = "none";
+const viewCards = async () => {
+  let cardP = document.querySelector(".grid-container");
+  let cardPI = document.querySelector(".dots");
+
+  cardPI.style.width = "200px";
+  let data;
+  const APIResponse = await fetch(`https://pokeapi.co/api/v2/pokemon`);
+  if (APIResponse.status === 200) {
+    data = await APIResponse.json();
   }
-}
-trocaLayout();
+  let a = "";
+  if (data) {
+    for (let index = 1; index < data.count; index++) {
+      const data1 = await fetchPokemon(index);
+      if (data1) {
+        a =
+          a +
+          `<div class="grid-item">
+           <img src="${data1["sprites"]["versions"]["generation-v"]["black-white"]["front_default"]}" class="pokemon-imageCard" alt="Pokemon"/>
+         </div>`;
+      }
+    }
+    cardPI.style.display = "none";
+    cardP.innerHTML = a;
+  }
+};
+viewCards();
 
 renderPokemon(searchPokemon);

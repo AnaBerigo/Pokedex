@@ -11,23 +11,21 @@
     <title>Pokédex</title>
 </head>
 <body>
-    <header>
-        <img src="images/cards_icon.png" class="cards_icon"/>
+    <header class="header">
         <img src="images/pokedex_icon.png" class="pokedex_icon"/>
-        <label class="switch">
-            <input class="checkbox" type="checkbox">
+        <img src="images/cards_icon.png" class="cards_icon"/>
+        <label class="switch ">
+            <input id="checkbox" class="" type="checkbox">
             <span class="slider round"></span>
         </label>
     </header>
-    <main>
-        <section class="layout-pokedex">
+    <main >
+        <section class="layout-pokedex hide">
             <img src="#" class="pokemon-image" alt="Pokemon" onerror="this.style.display = 'none'" onload='this.style.display = "block"'/>
         <img src="images/ImageNotFound.png" class="image-not-found" style="display: none;"/>
         <h1 class="pokemon-data">
             <span class="pokemon-number"></span> -
-            <!-- <abbr class="abbr-pokemon-name" title=""> -->
                 <span class="pokemon-name"></span>
-            <!-- </abbr> -->
             
         </h1>
         <form class="form">
@@ -39,8 +37,14 @@
         </div>
         <img src="images/pokedex.png" class="pokedex" alt="Pokédex"/>
         </section>
-        <section class="layout-cards">
-
+        <section class="layout-cards ">
+            <div class="grid-container">
+                <div class="dots">
+                    <img src="images/pokebola.png" alt="Pokemon"/>
+                    <img src="images/pokebola.png" alt="Pokemon"/>
+                    <img src="images/pokebola.png" alt="Pokemon"/>
+                </div>
+            </div>
         </section>
     </main>
 </body>
