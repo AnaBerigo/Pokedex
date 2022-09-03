@@ -206,14 +206,12 @@ main{
     height: 50%;
 }
 .div-numPokemon{
+  margin-top: 4%;
   display: flex;
+  gap:4%
 }
 .pokebola-mini{
   width: 13%;
-}
-.numPokemon{
-  margin-left: 25px;
-  margin-top: 1px;
 }
 /* Carrengando */
 @keyframes wave {
@@ -242,4 +240,28 @@ main{
 }
 .dots img:nth-child(2) {
   animation-delay: -0.2s;
+}
+
+.buttonsCard{
+  margin-top: 4%;
+  position: relative;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.buttonCard{
+ 
+  width: 15%;
+  padding: 1%;
+  border: 2px solid #000;
+  border-radius: 5px;
+  font-size: clamp(8px, 5vw, 1rem);
+  font-weight: 400;
+  color: white;
+  background-color: #444;
+  box-shadow: -1px 0 0 #222, -3px 3px 0 #000;
+}
+.buttonCard:active{
+  box-shadow: inset -2px 2px 0 #222;
+  font-size: 0.9rem;
 }

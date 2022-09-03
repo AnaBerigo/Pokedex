@@ -9,6 +9,10 @@ const next = document.querySelector(".btn-next");
 const checkbox = document.getElementById("checkbox");
 const cards = document.querySelector(".layout-cards");
 const pokedex = document.querySelector(".layout-pokedex");
+const vai = document.querySelector(".btn-nextCard");
+const vem = document.querySelector(".btn-prevCard");
+const cardP = document.querySelector(".grid-container");
+const cardPI = document.querySelector(".dots");
 
 const pokemonImageCard = document.querySelector(".pokemon-imageCard");
 
@@ -27,6 +31,13 @@ const fetchPokemon = async (pokemon) => {
   const APIResponse = await fetch(
     `https://pokeapi.co/api/v2/pokemon/${pokemon}`
   );
+  if (APIResponse.status === 200) {
+    const data = await APIResponse.json();
+    return data;
+  }
+};
+const fetchPokemonURL = async (url) => {
+  const APIResponse = await fetch(url);
   if (APIResponse.status === 200) {
     const data = await APIResponse.json();
     return data;
@@ -194,45 +205,70 @@ const cores = (type) => {
 //   document.getElementById(i).style.marginTop = "20px";
 // };
 
-const viewCards = async () => {
-  let cardP = document.querySelector(".grid-container");
-  let cardPI = document.querySelector(".dots");
+let numero = 0;
 
-  cardPI.style.width = "200px";
+vai.addEventListener("click", () => {
+  numero = numero + 21;
+  viewCards();
+  window.scrollTo(0, 0);
+});
+
+vem.addEventListener("click", () => {
+  if (numero >= 21) {
+    numero = numero - 21;
+    viewCards();
+    window.scrollTo(0, 0);
+  }
+});
+
+const NumberFormat = (n) => {
+  if (n < 10) {
+    return `00${n}`;
+  } else if (n < 100) {
+    return `0${n}`;
+  } else {
+    return `${n}`;
+  }
+};
+
+const viewCards = async () => {
+  cardPI.style.display = "block";
+
+  let url = `https://pokeapi.co/api/v2/pokemon?offset=${numero}&limit=21`;
+
   let data;
-  const APIResponse = await fetch(`https://pokeapi.co/api/v2/pokemon`);
+  const APIResponse = await fetch(url);
   if (APIResponse.status === 200) {
     data = await APIResponse.json();
   }
   let a = "";
 
   if (data) {
-    // console.log(data);
-    for (let index = 1; index < 906; index++) {
-      const data1 = await fetchPokemon(index);
-      if (data1) {
-        const type = data1.types.map((t) => {
-          return t.type.name;
-        });
-        let cor = cores(type);
-        let img =
-          data1["sprites"]["versions"]["generation-v"]["black-white"][
-            "front_default"
-          ];
-        let idImg = [index, img];
-        a =
-          a +
-          `<div onmouseover="overCard(${index})" onmouseout="outCard( ${index})" class="grid-item" style="background: linear-gradient(to bottom, ${
-            cor[0]
-          }, #F0F0F0, ${cor.length === 2 ? cor[1] : "#F0F0F0"});">
-          <div class="div-numPokemon">
-            <img src="images/pokebola.png" class="pokebola-mini" alt="Pokemon"/>
-            <p class="numPokemon">001</p>
-          </div>
-           <img id="${index}"  src="${img}" class="pokemon-imageCard" alt="Pokemon"/><br/>
-           <p>${type}</p>
-         </div>`;
-      }
+    for (let index = 0; index < data.results.length; index++) {
+      const data1 = await fetchPokemonURL(data.results[index].url);
+      const type = data1.types.map((t) => {
+        return t.type.name;
+      });
+      let cor = cores(type);
+      let img =
+        data1["sprites"]["versions"]["generation-v"]["black-white"][
+          "front_default"
+        ];
+      a =
+        a +
+        // `<div onmouseover="overCard(${index})" onmouseout="outCard( ${index})" class="grid-item" style="background: linear-gradient(to bottom, ${
+        //   cor[0]
+        // }, #F0F0F0, ${cor.length === 2 ? cor[1] : "#F0F0F0"});">
+        `<div class="grid-item" style="background: linear-gradient(to bottom, ${
+          cor[0]
+        }, #F0F0F0, ${cor.length === 2 ? cor[1] : "#F0F0F0"});">
+              <div class="div-numPokemon">
+                <img src="images/pokebola.png" class="pokebola-mini" alt="Pokemon"/>
+                <p class="numPokemon">${NumberFormat(data1.id)}</p>
+              </div>
+               <img id="${index}"  src="${img}" class="pokemon-imageCard" alt="Pokemon"/><br/>
+               <p>${type}</p>
+             </div>`;
     }
     cardPI.style.display = "none";
     cardP.innerHTML = a;
