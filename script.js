@@ -59,7 +59,7 @@ const renderPokemon = async (pokemon) => {
         "front_default"
       ] === null
     ) {
-      if (data.id < 906) {
+      if (data.id < 899) {
         pokemonImage.src =
           data["sprites"]["versions"]["generation-v"]["black-white"][
             "front_default"
