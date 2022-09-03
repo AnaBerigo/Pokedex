@@ -79,7 +79,7 @@ main.main{
   }
   
   input:checked + .slider {
-    background-color: rgba(33, 150, 243, 0.5)
+    background-color: rgba(29, 139, 228, 0.5)
   }
   
   input:focus + .slider {
@@ -103,14 +103,12 @@ main.main{
   
 main{
     display: inline-block;
-    margin-top: 2%;
     padding: 15px;
     position: relative;
 }
 .hide{
   display: none;
 }
-
 .pokedex{
     width: 100%;
     max-width: 425px;
@@ -132,7 +130,7 @@ main{
     position: absolute;
     font-weight: 600;
     color: #aaa;
-    top: 56.5%;
+    top: 54.5%;
     right: 27%;
     font-size: clamp(8px, 5vw, 25px);
     width: 52%;
@@ -145,7 +143,6 @@ main{
 .pokemon-name{
     color:#3a444d;
     text-transform: capitalize;
-    /* width: 90%; */
 }
 .form{
     position:absolute;
@@ -190,22 +187,35 @@ main{
 }
 .grid-container {
   display: grid;
-  gap: 15px;
+  gap: 20px;
   grid-template-columns: auto auto auto;
   /* background-color: #2196F3; */
   padding: 10px;
 }
 .grid-item {
-  background-color: rgba(255, 255, 255, 0.8);
   box-shadow: -1px 6px 13px -2px rgba(0,0,0,0.67);
   border-radius: 16px;
   padding: 20px;
+  padding-top: 5px;
   width: 200px;
   height: 350px;
 }
 .pokemon-imageCard{
+  margin-top: 20px;
     width: 100%;
+    height: 50%;
 }
+.div-numPokemon{
+  display: flex;
+}
+.pokebola-mini{
+  width: 13%;
+}
+.numPokemon{
+  margin-left: 25px;
+  margin-top: 1px;
+}
+/* Carrengando */
 @keyframes wave {
   from {
     transform: translateY(-50%);
@@ -214,14 +224,12 @@ main{
     transform: translateY(50%);
   }
 }
-
 .dots {
   height: 60vh;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-
 .dots img {
   width: 35px;
   height: 35px;
@@ -229,11 +237,9 @@ main{
   
   animation: wave .65s ease-in-out infinite alternate;
 }
-
 .dots img:nth-child(1) {
   animation-delay: -0.4s;
 }
-
 .dots img:nth-child(2) {
   animation-delay: -0.2s;
 }
