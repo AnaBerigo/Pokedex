@@ -13,6 +13,7 @@ const vai = document.querySelector(".btn-nextCard");
 const vem = document.querySelector(".btn-prevCard");
 const cardP = document.querySelector(".grid-container");
 const cardPI = document.querySelector(".dots");
+const buttonsCard = document.querySelector(".buttonsCard");
 
 const pokemonImageCard = document.querySelector(".pokemon-imageCard");
 
@@ -233,6 +234,7 @@ const NumberFormat = (n) => {
 
 const viewCards = async () => {
   cardPI.style.display = "block";
+  buttonsCard.style.display = "none";
 
   let url = `https://pokeapi.co/api/v2/pokemon?offset=${numero}&limit=21`;
 
@@ -270,6 +272,8 @@ const viewCards = async () => {
                <p>${type}</p>
              </div>`;
     }
+
+    buttonsCard.style.display = "flex";
     cardPI.style.display = "none";
     cardP.innerHTML = a;
   }
