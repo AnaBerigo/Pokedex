@@ -183,28 +183,68 @@ const cores = (type) => {
   }
   return gridColor;
 };
-
-// const overCard = async (i) => {
-//   const data1 = await fetchPokemon(i);
-//   document.getElementById(i).src =
-//     data1["sprites"]["versions"]["generation-v"]["black-white"]["animated"][
-//       "front_default"
-//     ];
-
-//   // document.getElementById(i).style.width = "90%";
-//   document.getElementById(i).style.height = "50%";
-//   document.getElementById(i).style.marginTop = "20px";
-// };
-// const outCard = async (i) => {
-//   const data1 = await fetchPokemon(i);
-//   document.getElementById(i).src =
-//     data1["sprites"]["versions"]["generation-v"]["black-white"][
-//       "front_default"
-//     ];
-//   // document.getElementById(i).style.width = "100%";
-//   document.getElementById(i).style.height = "50%";
-//   document.getElementById(i).style.marginTop = "20px";
-// };
+const coresPokebolas = (type) => {
+  let gridColor = [];
+  for (let i = 0; i < type.length; i++) {
+    switch (type[i]) {
+      case "normal":
+        gridColor.push("rgba(168, 168, 124, 0.5)");
+        break;
+      case "fighting":
+        gridColor.push("rgba(223, 9, 46, 0.5)");
+        break;
+      case "flying":
+        gridColor.push("rgba(172, 145, 236, 0.5)");
+        break;
+      case "poison":
+        gridColor.push("rgba(167, 64, 157, 0.5)");
+        break;
+      case "ground":
+        gridColor.push("rgba(227, 192, 113, 0.5)");
+        break;
+      case "rock":
+        gridColor.push("rgba(186, 160, 69, 0.5)");
+        break;
+      case "bug":
+        gridColor.push("rgba(166, 184, 58, 0.5)");
+        break;
+      case "ghost":
+        gridColor.push("rgba(115, 89, 149, 0.5)");
+        break;
+      case "steel":
+        gridColor.push("rgba(185, 184, 207, 0.5)");
+        break;
+      case "fire":
+        gridColor.push("rgba(248, 127, 61, 0.5)");
+        break;
+      case "water":
+        gridColor.push("rgba(102, 145, 236, 0.5)");
+        break;
+      case "grass":
+        gridColor.push("rgba(106, 200, 92, 0.5)");
+        break;
+      case "electric":
+        gridColor.push("rgba(251, 208, 74, 0.5)");
+        break;
+      case "psychic":
+        gridColor.push("rgba(255, 87, 136, 0.5)");
+        break;
+      case "ice":
+        gridColor.push("rgba(144, 216, 216, 0.5)");
+        break;
+      case "dragon":
+        gridColor.push("rgba(119, 59, 242, 0.5)");
+        break;
+      case "dark":
+        gridColor.push("rgba(114, 88, 74, 0.5)");
+        break;
+      case "fairy":
+        gridColor.push("rgba(245, 153, 172, 0.5)");
+        break;
+    }
+  }
+  return gridColor;
+};
 
 let numero = 0;
 
@@ -232,6 +272,18 @@ const NumberFormat = (n) => {
   }
 };
 
+const Pokebolas = () => {
+  // coresPokebolas();
+  let a;
+  return (a = `
+  <div class="geral">
+  <div class="pokebola tam1">
+    <div class="detalhe"></div>
+  </div>
+  </div>
+  `);
+};
+
 const viewCards = async () => {
   cardPI.style.display = "block";
   buttonsCard.style.display = "none";
@@ -244,6 +296,7 @@ const viewCards = async () => {
     data = await APIResponse.json();
   }
   let a = "";
+  console.log("url", url);
 
   if (data) {
     for (let index = 0; index < data.results.length; index++) {
@@ -256,6 +309,7 @@ const viewCards = async () => {
         data1["sprites"]["versions"]["generation-v"]["black-white"][
           "front_default"
         ];
+      // console.log(data1);
       a =
         a +
         // `<div onmouseover="overCard(${index})" onmouseout="outCard( ${index})" class="grid-item" style="background: linear-gradient(to bottom, ${
@@ -264,12 +318,18 @@ const viewCards = async () => {
         `<div class="grid-item" style="background: linear-gradient(to bottom, ${
           cor[0]
         }, #F0F0F0, ${cor.length === 2 ? cor[1] : "#F0F0F0"});">
+        
               <div class="div-numPokemon">
                 <img src="images/pokebola.png" class="pokebola-mini" alt="Pokemon"/>
                 <p class="numPokemon">${NumberFormat(data1.id)}</p>
               </div>
-               <img id="${index}"  src="${img}" class="pokemon-imageCard" alt="Pokemon"/><br/>
-               <p>${type}</p>
+              <div class="img-info">
+              <div class="p-info">
+                <p>${data1.name}</p>
+                <p>${type}</p>
+              </div>
+                <img id="${index}"  src="${img}" class="pokemon-imageCard" alt="Pokemon"/><br/>
+              </div>
              </div>`;
     }
 
