@@ -315,19 +315,24 @@ const viewCards = async () => {
         // `<div onmouseover="overCard(${index})" onmouseout="outCard( ${index})" class="grid-item" style="background: linear-gradient(to bottom, ${
         //   cor[0]
         // }, #F0F0F0, ${cor.length === 2 ? cor[1] : "#F0F0F0"});">
-        `<div class="grid-item" style="background: linear-gradient(to bottom, ${
+        `<div class="grid-item" style="background: linear-gradient(${
           cor[0]
-        }, #F0F0F0, ${cor.length === 2 ? cor[1] : "#F0F0F0"});">
+        } 0%,#FFFFFF 45%, #FFFFFF 55%, ${
+          cor.length === 2 ? cor[1] : "#FFFFFF"
+        } 100%); ">
         
               <div class="div-numPokemon">
                 <img src="images/pokebola.png" class="pokebola-mini" alt="Pokemon"/>
                 <p class="numPokemon">${NumberFormat(data1.id)}</p>
               </div>
+              <div class="type">
+                  <p class="p-tipo">${type[0]}</p>
+                  <p class=${type.length == 2 ? "p-tipo" : ""}>${
+          type.length == 2 ? type[1] : ""
+        }</p>
+                </div>
               <div class="img-info">
-              <div class="p-info">
-                <p>${data1.name}</p>
-                <p>${type}</p>
-              </div>
+                <p class="p-titulo">${data1.name}</p>
                 <img id="${index}"  src="${img}" class="pokemon-imageCard" alt="Pokemon"/><br/>
               </div>
              </div>`;

@@ -197,7 +197,7 @@ main{
   padding: 20px;
   padding-top: 5px;
   height: 200px;
-  width: 350px;
+  width: 300px;
 }
 .pokemon-imageCard{
   margin:-5% -20% 0 0;
@@ -212,7 +212,7 @@ main{
   z-index: 1;
 }
 .img-info{
-  margin-top: -5%;  
+  margin-top: -10%;  
   gap:4%;
   width: 100%;
   display: inline-flex;
@@ -221,7 +221,7 @@ main{
   z-index: 1;
 }
 .pokebola-mini{
-  width: 7%;
+  width: 8%;
   z-index: 1;
 }
 .geral{
@@ -229,7 +229,33 @@ main{
   position: absolute;
   z-index: 0;
 }
-.pokebola{
+.p-titulo{
+  margin-top: 12%;
+font-size: 20px;
+font-weight: 500;
+color: #333;
+text-transform: capitalize;
+}
+.p-tipo{
+  text-transform: capitalize;
+  /* position: absolute; */
+  margin-top: 15px;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 6px;
+  font-weight: 500;
+  color: #fff;
+  width: 100px;
+  padding: 4px;
+  margin: 0 15px 0 -5px;
+text-shadow:1px 1px 3px rgba(0, 0, 0, 0.6);
+}
+.type{
+  position: absolute;
+  display: flex;
+  margin-top: 11.5%;
+;
+}
+/* .pokebola{
   width:4rem;
   height:4rem;
   background: #fff;
@@ -250,7 +276,6 @@ main{
   background: #333;
   margin-top: 1.9rem;
   position: absolute;
-
 }
 .detalhe::before{
   content: '';
@@ -262,7 +287,7 @@ main{
   margin-top: -0.4rem;
   margin-left: -0.5rem;
 
-}
+} */
 /* Carrengando */
 @keyframes wave {
   from {
